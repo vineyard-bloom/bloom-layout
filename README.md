@@ -2,11 +2,11 @@
 ### Reusable presentational components in React
 
 ## Contents
-- [Accordions](https://github.com/vineyard-bloom/bloom-starter#accordions)
-- [Alerts](https://github.com/vineyard-bloom/bloom-starter#alerts)
-- [Modals](https://github.com/vineyard-bloom/bloom-starter#modals)
-- [Tables](https://github.com/vineyard-bloom/bloom-starter#tables)
-- [Tooltips](https://github.com/vineyard-bloom/bloom-starter#tooltips)
+- [Accordions](https://github.com/vineyard-bloom/bloom-layout#accordions)
+- [Alerts](https://github.com/vineyard-bloom/bloom-layout#alerts)
+- [Modals](https://github.com/vineyard-bloom/bloom-layout#modals)
+- [Tables](https://github.com/vineyard-bloom/bloom-layout#tables)
+- [Tooltips](https://github.com/vineyard-bloom/bloom-layout#tooltips)
 
 
 ## Usage
