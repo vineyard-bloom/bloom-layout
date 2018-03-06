@@ -32,10 +32,6 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|eot|ttf|woff|woff2|svg)$/,
         loader: 'url-loader',
-        include: [
-          path.join(__dirname, 'src/images'),
-          path.join(__dirname, 'public/fonts')
-        ],
         options: {
           limit: 10000
         }

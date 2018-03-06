@@ -38,6 +38,7 @@ class TableDataHandler extends React.Component {
       })
     ).isRequired,
     loading: PropTypes.bool,
+    loadingElement: PropTypes.element,
     linkFields: PropTypes.object,
     query: PropTypes.shape({
       /* Query is for server-side pagination, sorting, filtering, but *also* any initializing of client-side pagination, sorting, etc. */
