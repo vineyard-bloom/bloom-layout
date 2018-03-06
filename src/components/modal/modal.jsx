@@ -166,11 +166,13 @@ class Modal extends React.Component {
             <div
               className={`Modal-content descend-${status}`}
               aria-hidden={!modalContents}
+              key='modal-contents-wrapper'
             >
               <button
+                aria-controls='modal-wrapper'
+                aria-label='close this modal'
                 className='Btn--null Btn--close'
                 id='modal-close-button'
-                aria-label='close this modal'
                 onClick={e => {
                   e.preventDefault()
                   props.closeModal()
