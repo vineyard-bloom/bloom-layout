@@ -66,7 +66,7 @@ class Modal extends React.Component {
     }
   };
 
-  keyDownHandler = evt => {
+  captureTabAndEscape = evt => {
     const e = evt || window.event
     const keyCode = e.which || e.keyCode
     const closeBtn = document.getElementById('modal-close-button')
@@ -147,19 +147,20 @@ class Modal extends React.Component {
   };
 
   render() {
-    let { modalContents, ...props } = this.props
+    const { modalContents, ...props } = this.props
 
     return (
       <div
-        className={`Modal ${modalContents ? 'is-active' : 'is-hidden'}`}
-        onKeyDown={this.keyDownHandler}
-        id='modal-wrapper'
-        onClick={this.detectClickOff}
-        onBlur={this.onFocusOut}
-        tabIndex={modalContents ? 0 : -1}
-        aria-live='polite'
-        role='dialog'
         aria-hidden={!modalContents}
+        aria-live='polite'
+        aria-relevant='additions removals'
+        className={`Modal ${modalContents ? 'is-active' : 'is-hidden'}`}
+        id='modal-wrapper'
+        onBlur={this.onFocusOut}
+        onClick={this.detectClickOff}
+        onKeyDown={this.captureTabAndEscape}
+        role='dialog'
+        tabIndex={modalContents ? 0 : -1}
       >
         <Transition in={!!modalContents} timeout={0}>
           {status => (
