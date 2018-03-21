@@ -71,7 +71,7 @@ class Accordion extends React.Component {
                 aria-labelledby={`${sectionId}-trigger-button`}
                 className={`Accordion-section-contents ${
                   isOpen ? 'is-open' : ''
-                } fold-${status}`}
+                } Accordion-fold-${status}`}
               >
                 {section.contents
                   ? React.cloneElement(section.contents, {

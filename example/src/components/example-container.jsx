@@ -8,6 +8,12 @@ class ExampleContainer extends React.Component {
     activeAlert: null
   }
 
+  closeAlert = () => {
+    this.setState({
+      activeAlert: null
+    })
+  }
+
   closeModal = () => {
     this.setState({
       modalContents: null
@@ -16,7 +22,7 @@ class ExampleContainer extends React.Component {
 
   openAlert = () => {
     this.setState({
-      activeAlert: 'Boop!'
+      activeAlert: { message: 'Boop!' }
     })
   }
 
@@ -29,6 +35,7 @@ class ExampleContainer extends React.Component {
   render() {
     return (
       <Example
+        closeAlert={this.closeAlert}
         closeModal={this.closeModal}
         openAlert={this.openAlert}
         openModal={this.openModal}

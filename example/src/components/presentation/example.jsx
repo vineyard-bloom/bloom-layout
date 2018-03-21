@@ -8,7 +8,7 @@ import {
   Tooltip
 } from 'bloom-layout'
 
-const Example = props => {
+const Example = ({ activeAlert, closeAlert, closeModal, modalContents, openAlert, openModal }) => {
   const accordionSections = [
     {
       contents: <div>I am contents</div>,
@@ -25,8 +25,16 @@ const Example = props => {
       <Accordion
         sections={accordionSections}
       />
-      <button onClick={props.openAlert}>Open Alert</button>
-      <button onClick={props.openModal}>Open Modal</button>
+      <button onClick={openAlert}>Open Alert</button>
+      <button onClick={openModal}>Open Modal</button>
+      <Modal modalContents={modalContents}
+        closeModal={closeModal}
+      />
+      <Alert
+        closeAlert={closeAlert}
+        currentAlert={activeAlert}
+        hidden={!activeAlert}
+      />
     </div>
   )
 }
