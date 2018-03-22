@@ -26,7 +26,7 @@ class Modal extends React.Component {
   };
 
   static propTypes = {
-    closeModal: PropTypes.func,
+    closeModal: PropTypes.func.isRequired,
     modalContents: PropTypes.element,
     modalTriggerId: PropTypes.string
   };
