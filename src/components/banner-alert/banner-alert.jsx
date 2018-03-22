@@ -5,35 +5,26 @@ import Transition from 'react-transition-group/Transition'
 import './banner-alert.scss'
 
 const BannerAlert = props => {
-  const { closeAlert, currentAlert } = props
+  const { closeBanner, currentBanner } = props
   return (
     <div
       tabIndex={-1}
       aria-atomic
       aria-relevant='additions removals'
-      className={`Alert-background ${props.hidden ? 'is-hidden' : ''}`}
+      className={`BannerAlert-background ${props.hidden ? 'is-hidden' : ''}`}
       role='alert'
       aria-live='assertive'
     >
-      <Transition in={!!currentAlert} timeout={0}>
+      <Transition in={!!currentBanner} timeout={0}>
         {status => (
           <div
-            className={`Alert Alert--${
-              currentAlert ? currentAlert.style : ''
-            } descend-${status}`}
+            className={`BannerAlert BannerAlert--${
+              currentBanner ? currentBanner.style : ''
+            } BannerAlert-fade-${status}`}
           >
-            {closeAlert && (
-              <a href='#' onClick={closeAlert} className='Alert-close' />
-            )}
-            <div
-              className={`Alert-icon icons-${
-                currentAlert ? currentAlert.style : ''
-              }`}
-              role='presentation'
-            />
-            <div className='u-sr-only'>Alert message: </div>
+            <a href='#' onClick={closeBanner} className='Banner-Alert-close' />
             <div className='Alert-text'>
-              {currentAlert ? currentAlert.message : ''}
+              {currentBanner ? currentBanner.message : ''}
             </div>
           </div>
         )}
@@ -43,9 +34,10 @@ const BannerAlert = props => {
 }
 
 BannerAlert.propTypes = {
-  closeAlert: PropTypes.func,
-  currentAlert: PropTypes.shape({
-    message: PropTypes.string.isRequired,
+  closeBanner: PropTypes.func.isRequired,
+  currentBanner: PropTypes.shape({
+    message: PropTypes.oneOfType(PropTypes.string, PropTypes.element)
+      .isRequired,
     style: PropTypes.string
   }),
   hidden: PropTypes.bool
