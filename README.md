@@ -40,62 +40,44 @@ By default, `Accordion`s have index 0 open on mounting. If you want a different 
 [Back to Contents](https://github.com/vineyard-bloom/bloom-starter#contents)
 
 ### Alerts
-Alerts function similarly to modals, except they close after a few seconds' timeout, and you can add several in a row, which appear in succession.
+Alert should be rendered once to the screen, ideally having its contents and closing functionality handled via redux. See [docs related to integrating with redux]().
 
-The alert methods available through redux are `addAlert`, `expireAlert`, and `hardDeleteAlert`.
+Alerts require two props:
+```
+currentAlert:
+Object of type { message: string, style: one of 'warning', 'success', 'danger' }
 
-`addAlert` takes two parameters: the alert message, and the style, which should be one of three strings: 'success', 'status', and 'warning'. (After grabbing via mapDispatchToProps), it's used like:
-```
-this.props.addAlert('I am an alert', 'success')
-```
-
-`expireAlert` times out the first alert in your array of alerts. For example, you might have two alerts pop up in succession: 'Server Error, please try again.' and 'You are not authorized to do this action.'
-The 'Server Error' alert will show up first. By default it will stay on screen for a few seconds and then disappear, revealing the second, but you may expire it early by calling
-```
-this.props.expireAlert()
+hidden:
+boolean
 ```
 
-`hardDeleteAlert` allows you to immediately delete any message in your alerts queue. Say you want to remove the second alert in the queue before it appears on screen. You can delete it immediately by
+Additionally, you can make the alert closable by passing in a
 ```
-this.props.hardDeleteAlert('You are not authorized to do this action.')
+closeAlert: function
 ```
 
 [Back to Contents](https://github.com/vineyard-bloom/bloom-starter#contents)
 
 ### Modals
-There is always a modal rendered to the screen, but it appears/disappears depending on if it's given any content to display. All modal methods are available in the redux store via `openModal` and `closeModal`.  Without `modalContents`, the modal is hidden. Every modal renders the same `x` button to close.
+Modal should be rendered once to the screen, ideally having its contents and closing functionality handled via redux. See [docs related to integrating with redux](). Every modal renders the same `x` button to close.
 
-`openModal` takes three parameters, the `event` that triggered it opening, `modalContents`, which should be a self-contained component holding any modal headers, body, forms, etc., and the ID of the button or anchor tag that triggered the modal. This third parameter is necessary for accessibility.
+Modal requires three props to be defined:
+```
+closeModal: function
 
-To use, grab `openModal` and `closeModal` with mapDispatchToProps.
-```
-const mapDispatchToProps = (dispatch) => {
-  return {
-    ...
-    closeModal: () => {
-      dispatch(closeModal())
-    },
-    openModal: (e, modalContents, triggerId) => {
-      dispatch(openModal(e, modalContents, triggerId))
-    }
-    ...
-  }
-}
-```
-And trigger it like so:
-```
-this.props.openModal(e, <div>I am an example modal.</div>, 'example-button-trigger')
-```
-or
-```
-this.props.closeModal()
+modalContents: a React Element to fill the modal
+  * may be null
+  * modal will be hidden if modalContents is null
+
+modalTriggerId: a string that maps to an id of the button that opened the modal
+  * must be defined if you have modalContents
+  * used to refocus the document activeElement after closing the modal
+  * if you triggered a modal programmatically, and no button triggered its opening, choose a focusable element in the content behind the modal
 ```
 
 ** All focusable elements inside the modal MUST have ids. There are several diffing event handlers that trap tab focus for accessibility, and it uses ids of those elements **
 
-You cannot have more than one modal open at a time.
-
-You don't need to pass closeModal to the existing 'x' button.
+You shouldn't have more than one modal open at a time.
 
 [Back to Contents](https://github.com/vineyard-bloom/bloom-starter#contents)
 
