@@ -1,3 +1,4 @@
+const autoprefixer = require('autoprefixer')
 const path = require('path')
 const BUILD_DIR = path.join(__dirname, '/')
 const APP_DIR = path.join(__dirname, '/src/')
@@ -41,6 +42,13 @@ module.exports = {
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader' },
+          { loader: 'postcss-loader',
+            options: {
+              plugins: function() {
+                return [autoprefixer]
+              }
+            }
+          },
           { loader: 'sass-loader' }
         ]
       }

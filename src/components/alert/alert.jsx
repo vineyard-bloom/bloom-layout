@@ -5,7 +5,7 @@ import Transition from 'react-transition-group/Transition'
 import './alert.scss'
 
 const Alert = props => {
-  const { currentAlert } = props
+  const { closeAlert, currentAlert } = props
   return (
     <div
       tabIndex={-1}
@@ -22,6 +22,9 @@ const Alert = props => {
               currentAlert ? currentAlert.style : ''
             } descend-${status}`}
           >
+            {closeAlert && (
+              <a href='#' onClick={closeAlert} className='Alert-close' />
+            )}
             <div
               className={`Alert-icon icons-${
                 currentAlert ? currentAlert.style : ''
@@ -40,6 +43,7 @@ const Alert = props => {
 }
 
 Alert.propTypes = {
+  closeAlert: PropTypes.func,
   currentAlert: PropTypes.shape({
     message: PropTypes.string.isRequired,
     style: PropTypes.string

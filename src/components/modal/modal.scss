@@ -5,6 +5,7 @@ MODAL
 @import '~styles/common';
 
 $modal-contents-width: 450px;
+$modal-distance-from-top: 80px;
 
 .Modal {
   @include transition(0.3s ease, 0.3s ease opacity 0.1s, 0s ease max-height 0.3s, 0.1s ease top, 0.1s ease background-color 0.1s);
@@ -12,7 +13,7 @@ $modal-contents-width: 450px;
   bottom: 0;
   left: 0;
   max-height: 100vh;
-  padding-top: 80px;
+  padding-top: $modal-distance-from-top;
   position: fixed;
   right: 0;
   top: 0;
@@ -28,6 +29,12 @@ $modal-contents-width: 450px;
     .Modal-content {
       opacity: 0;
     }
+
+    .Modal-close {
+      @include transition(0.2s ease, 0.2s ease opacity 0);
+      top: -15px;
+      opacity: 0;
+    }
   }
 
   &-content {
@@ -38,14 +45,16 @@ $modal-contents-width: 450px;
     opacity: 1;
     overflow: hidden;
     width: $modal-contents-width;
+  }
 
-    .Btn--close {
-      margin-left: calc(-40px + #{$modal-contents-width});
-      margin-top: 2px;
-      padding: $pad-mar-small;
-      position: relative;
-      z-index: calc(#{$z-100} + 1);
-    }
+  &-close {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/4c/Grey_close_x.svg');
+    border: 0;
+    margin-left: calc(-40px + #{$modal-contents-width});
+    padding: $pad-mar-small;
+    position: absolute;
+    top: calc(#{$modal-distance-from-top} + 15px);
+    z-index: calc(#{$z-100} + 1);
   }
 
   &-form {
@@ -69,11 +78,11 @@ $modal-contents-width: 450px;
   .Modal {
     &-content {
       width: calc(#{$modal-contents-width} * 0.6);
+    }
 
-      .Btn-close {
-        margin-left: calc(-45px + #{$modal-contents-width} * 0.6);
-        top: inherit;
-      }
+    &-close {
+      margin-left: calc(-45px + #{$modal-contents-width} * 0.6);
+      top: inherit;
     }
   }
 }
