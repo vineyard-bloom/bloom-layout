@@ -8,12 +8,12 @@ const BannerAlert = props => {
   const { closeBanner, currentBanner } = props
   return (
     <div
-      tabIndex={-1}
       aria-atomic
       aria-relevant='additions removals'
-      className={`BannerAlert-background ${props.hidden ? 'is-hidden' : ''}`}
+      className={`BannerAlert-background ${!currentBanner ? 'is-hidden' : ''}`}
       role='alert'
       aria-live='assertive'
+      aria-hidden={!currentBanner}
     >
       <Transition in={!!currentBanner} timeout={0}>
         {status => (
@@ -22,10 +22,15 @@ const BannerAlert = props => {
               currentBanner ? currentBanner.style : ''
             } BannerAlert-fade-${status}`}
           >
-            <a href='#' onClick={closeBanner} className='Banner-Alert-close' />
-            <div className='Alert-text'>
-              {currentBanner ? currentBanner.message : ''}
+            <div className='BannerAlert-text'>
+              {currentBanner ? currentBanner : ''}
             </div>
+            <a
+              href='#'
+              className='BannerAlert-close'
+              onClick={closeBanner}
+              tabIndex={!closeBanner ? -1 : 0}
+            />
           </div>
         )}
       </Transition>
@@ -35,12 +40,7 @@ const BannerAlert = props => {
 
 BannerAlert.propTypes = {
   closeBanner: PropTypes.func.isRequired,
-  currentBanner: PropTypes.shape({
-    message: PropTypes.oneOfType(PropTypes.string, PropTypes.element)
-      .isRequired,
-    style: PropTypes.string
-  }),
-  hidden: PropTypes.bool
+  currentBanner: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
 }
 
 export default BannerAlert

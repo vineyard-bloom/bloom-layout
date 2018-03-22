@@ -5,25 +5,8 @@ import Example from './presentation/example'
 class ExampleContainer extends React.Component {
   state = {
     modalContents: null,
-    activeAlert: null
-  }
-
-  closeAlert = () => {
-    this.setState({
-      activeAlert: null
-    })
-  }
-
-  closeModal = () => {
-    this.setState({
-      modalContents: null
-    })
-  }
-
-  openAlert = () => {
-    this.setState({
-      activeAlert: { message: 'Boop!' }
-    })
+    activeAlert: null,
+    activeBanner: 'This is a closeable Banner'
   }
 
   openModal = () => {
@@ -35,9 +18,11 @@ class ExampleContainer extends React.Component {
   render() {
     return (
       <Example
-        closeAlert={this.closeAlert}
-        closeModal={this.closeModal}
-        openAlert={this.openAlert}
+        closeAlert={() => this.setState({ activeAlert: null })}
+        closeBanner={() => this.setState({ activeBanner: null })}
+        closeModal={() => this.setState({ modalContents: null })}
+        openAlert={() => this.setState({ activeAlert: { message: 'Boop!' } })}
+        openBanner={() => this.setState({ activeBanner: 'This is a closeable Banner' })}
         openModal={this.openModal}
         { ...this.state }
       />
