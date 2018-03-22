@@ -9,7 +9,6 @@ ACCORDION
     border-bottom: 1px solid $light-gray;
     height: auto;
     min-height: 20px;
-    overflow: hidden;
     @include transition(0.2s ease-in-out);
 
     &:last-of-type {
@@ -17,10 +16,13 @@ ACCORDION
     }
 
     &.is-open {
-      overflow: visible;
+      .Accordion-section-contents {
+        overflow: visible;
+      }
     }
 
     &-contents {
+      overflow: hidden;
       z-index: $z-1;
     }
 
@@ -45,32 +47,33 @@ ACCORDION
       }
     }
   }
-}
 
-.Accordion-fold-entering {
-  @include transition(0.2s ease-in-out, 0.8s ease-in-out max-height 0s, 0.2s ease opacity 0.3s);
-  max-height: 10px !important;
-  opacity: 0.5;
-  overflow: hidden;
-}
+  // transitions
+  &-fold-entering {
+    @include transition(0.2s ease-in-out, 0.8s ease-in-out max-height 0s, 0.2s ease opacity 0.3s);
+    max-height: 10px !important;
+    opacity: 0.5;
+    overflow: hidden;
+  }
 
-.Accordion-fold-entered {
-  @include transition(0.2s ease-in-out, 0.8s ease-in-out max-height 0s, 0.2s ease opacity 0.3s);
-  max-height: 800px !important;
-  opacity: 1;
-  overflow: visible;
-}
+  &-fold-entered {
+    @include transition(0.2s ease-in-out, 0.8s ease-in-out max-height 0s, 0.2s ease opacity 0.3s);
+    max-height: 800px !important;
+    opacity: 1;
+    overflow: visible;
+  }
 
-.Accordion-fold-exiting {
-  @include transition(0.2s ease-in-out, 0.8s ease-in-out max-height 0s);
-  max-height: 100px !important;
-  opacity: 0.5;
-  overflow: hidden;
-}
+  &-fold-exiting {
+    @include transition(0.2s ease-in-out, 0.8s ease-in-out max-height 0s);
+    max-height: 100px !important;
+    opacity: 0.5;
+    overflow: hidden;
+  }
 
-.Accordion-fold-exited {
-  @include transition(0.2s ease-in-out, 0.5s ease-in-out max-height 0s);
-  max-height: 1px !important;
-  opacity: 0;
-  overflow: hidden;
+  &-fold-exited {
+    @include transition(0.2s ease-in-out, 0.5s ease-in-out max-height 0s);
+    max-height: 1px !important;
+    opacity: 0;
+    overflow: hidden;
+  }
 }

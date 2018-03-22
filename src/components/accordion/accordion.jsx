@@ -17,28 +17,39 @@ class Accordion extends React.Component {
     // only go to next header if we're focused on a header
     if (
       currentFocus &&
-      currentFocus.classList.indexOf('Accordion-section-header') > -1
+      [...currentFocus.classList].indexOf('Accordion-section-header') > -1
     ) {
       const currentSectionId = (currentFocus.id || '')
         .toString()
         .replace('-trigger-button', '')
-        .replace('Accordion-section', '')
-      const currentSectionIndex = this.props.options
-        .map(opt => opt.header)
+        .replace('Accordion-section-', '')
+        .replace(/-/g, ' ')
+      const currentSectionIndex = this.props.sections
+        .map(opt => opt.header.toLowerCase().replace(/-/g, ' '))
         .indexOf(currentSectionId)
 
-      if (key === 40 && this.props.options.length > currentSectionIndex - 1) {
+      if (key === 40 && this.props.sections[currentSectionIndex + 1]) {
         // arrow down
-        const nextOption = this.props.options[currentSectionIndex + 1]
-        document
-          .getElementById(`Accordion-section-${nextOption}-trigger-button`)
-          .focus()
-      } else if (key === 38(currentSectionIndex > 0)) {
+        const nextOption = this.props.sections[currentSectionIndex + 1].header
+          .toLowerCase()
+          .replace(/\s/g, '-')
+        const nextOptionElement = document.getElementById(
+          `Accordion-section-${nextOption}-trigger-button`
+        )
+        if (nextOptionElement) {
+          nextOptionElement.focus()
+        }
+      } else if (key === 38 && currentSectionIndex > 0) {
         // arrow up
-        const prevOption = this.props.options[currentSectionIndex - 1]
-        document
-          .getElementById(`Accordion-section-${prevOption}-trigger-button`)
-          .focus()
+        const prevOption = this.props.sections[currentSectionIndex - 1].header
+          .toLowerCase()
+          .replace(/\s/g, '-')
+        const prevOptionElement = document.getElementById(
+          `Accordion-section-${prevOption}-trigger-button`
+        )
+        if (prevOptionElement) {
+          prevOptionElement.focus()
+        }
       }
     }
   };
