@@ -10,6 +10,39 @@ class Accordion extends React.Component {
     openSection: 0
   };
 
+  captureArrowKeys = e => {
+    const key = e.which || e.keyCode
+    const currentFocus = document.activeElement
+
+    // only go to next header if we're focused on a header
+    if (
+      currentFocus &&
+      currentFocus.classList.indexOf('Accordion-section-header') > -1
+    ) {
+      const currentSectionId = (currentFocus.id || '')
+        .toString()
+        .replace('-trigger-button', '')
+        .replace('Accordion-section', '')
+      const currentSectionIndex = this.props.options
+        .map(opt => opt.header)
+        .indexOf(currentSectionId)
+
+      if (key === 40 && this.props.options.length > currentSectionIndex - 1) {
+        // arrow down
+        const nextOption = this.props.options[currentSectionIndex + 1]
+        document
+          .getElementById(`Accordion-section-${nextOption}-trigger-button`)
+          .focus()
+      } else if (key === 38(currentSectionIndex > 0)) {
+        // arrow up
+        const prevOption = this.props.options[currentSectionIndex - 1]
+        document
+          .getElementById(`Accordion-section-${prevOption}-trigger-button`)
+          .focus()
+      }
+    }
+  };
+
   triggerSection = index => {
     this.setState({
       openSection: index === this.state.openSection ? null : index
@@ -48,7 +81,6 @@ class Accordion extends React.Component {
           className={`Accordion-section ${isOpen ? 'is-open' : ''}`}
           key={sectionId}
           aria-expanded={isOpen}
-          id={sectionId}
         >
           <button
             className={`Accordion-section-header ${
@@ -72,6 +104,8 @@ class Accordion extends React.Component {
                 className={`Accordion-section-contents ${
                   isOpen ? 'is-open' : ''
                 } Accordion-fold-${status}`}
+                id={sectionId}
+                role='region'
               >
                 {section.contents
                   ? React.cloneElement(section.contents, {
@@ -86,7 +120,10 @@ class Accordion extends React.Component {
     })
 
     return (
-      <div className={`Accordion ${className || ''}`}>
+      <div
+        className={`Accordion ${className || ''}`}
+        onKeyDown={this.captureArrowKeys}
+      >
         <ul className='Accordion-sections'>{accordionSections}</ul>
       </div>
     )
