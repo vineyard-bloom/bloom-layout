@@ -4,6 +4,7 @@
 ## Contents
 - [Accordions](https://github.com/vineyard-bloom/bloom-layout#accordions)
 - [Alerts](https://github.com/vineyard-bloom/bloom-layout#alerts)
+- [Banner Alerts]()
 - [Modals](https://github.com/vineyard-bloom/bloom-layout#modals)
 - [Tables](https://github.com/vineyard-bloom/bloom-layout#tables)
 - [Tooltips](https://github.com/vineyard-bloom/bloom-layout#tooltips)
@@ -56,6 +57,17 @@ Additionally, you can make the alert closable by passing in a
 ```
 closeAlert: function
 ```
+
+[Back to Contents](https://github.com/vineyard-bloom/bloom-starter#contents)
+
+### Banner Alerts
+A full-width banner notification that must be closed manually. Required props are:
+```
+closeBanner: function
+
+currentBanner: either a string or an element
+```
+Optionally, you can pass in a className to add to the BannerAlert.
 
 [Back to Contents](https://github.com/vineyard-bloom/bloom-starter#contents)
 

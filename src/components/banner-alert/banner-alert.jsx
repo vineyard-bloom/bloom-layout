@@ -5,7 +5,7 @@ import Transition from 'react-transition-group/Transition'
 import './banner-alert.scss'
 
 const BannerAlert = props => {
-  const { closeBanner, currentBanner } = props
+  const { className, closeBanner, currentBanner } = props
   return (
     <div
       aria-atomic
@@ -18,9 +18,8 @@ const BannerAlert = props => {
       <Transition in={!!currentBanner} timeout={0}>
         {status => (
           <div
-            className={`BannerAlert BannerAlert--${
-              currentBanner ? currentBanner.style : ''
-            } BannerAlert-fade-${status}`}
+            className={`BannerAlert ${className ||
+              ''} BannerAlert-fade-${status}`}
           >
             <div className='BannerAlert-text'>
               {currentBanner ? currentBanner : ''}
@@ -39,6 +38,7 @@ const BannerAlert = props => {
 }
 
 BannerAlert.propTypes = {
+  className: PropTypes.string,
   closeBanner: PropTypes.func.isRequired,
   currentBanner: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
 }
