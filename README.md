@@ -4,9 +4,11 @@
 ## Contents
 - [Accordions](https://github.com/vineyard-bloom/bloom-layout#accordions)
 - [Alerts](https://github.com/vineyard-bloom/bloom-layout#alerts)
+- [Banner Alerts]()
 - [Modals](https://github.com/vineyard-bloom/bloom-layout#modals)
 - [Tables](https://github.com/vineyard-bloom/bloom-layout#tables)
 - [Tooltips](https://github.com/vineyard-bloom/bloom-layout#tooltips)
+- [Using Alert and Modal with Redux](https://github.com/vineyard-bloom/bloom-layout/blob/master/docs/alert-and-modal-with-redux.md)
 
 
 ## Usage
@@ -40,7 +42,7 @@ By default, `Accordion`s have index 0 open on mounting. If you want a different 
 [Back to Contents](https://github.com/vineyard-bloom/bloom-starter#contents)
 
 ### Alerts
-Alert should be rendered once to the screen, ideally having its contents and closing functionality handled via redux. See [docs related to integrating with redux]().
+Alert should be rendered once to the screen, ideally having its contents and closing functionality handled via redux. See [docs related to integrating with redux](https://github.com/vineyard-bloom/bloom-layout/blob/master/docs/alert-and-modal-with-redux.md).
 
 Alerts require two props:
 ```
@@ -58,8 +60,19 @@ closeAlert: function
 
 [Back to Contents](https://github.com/vineyard-bloom/bloom-starter#contents)
 
+### Banner Alerts
+A full-width banner notification that must be closed manually. Required props are:
+```
+closeBanner: function
+
+currentBanner: either a string or an element
+```
+Optionally, you can pass in a className to add to the BannerAlert.
+
+[Back to Contents](https://github.com/vineyard-bloom/bloom-starter#contents)
+
 ### Modals
-Modal should be rendered once to the screen, ideally having its contents and closing functionality handled via redux. See [docs related to integrating with redux](). Every modal renders the same `x` button to close.
+Modal should be rendered once to the screen, ideally having its contents and closing functionality handled via redux. See [docs related to integrating with redux](https://github.com/vineyard-bloom/bloom-layout/blob/master/docs/alert-and-modal-with-redux.md). Every modal renders the same `x` button to close.
 
 Modal requires three props to be defined:
 ```

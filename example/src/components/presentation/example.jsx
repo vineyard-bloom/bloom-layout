@@ -2,13 +2,14 @@ import React from 'react'
 import {
   Accordion,
   Alert,
+  BannerAlert,
   Loading,
   Modal,
   Table,
   Tooltip
 } from 'bloom-layout'
 
-const Example = ({ activeAlert, closeAlert, closeModal, modalContents, openAlert, openModal }) => {
+const Example = ({ activeAlert, activeBanner, closeAlert, closeBanner, closeModal, modalContents, openAlert, openBanner, openModal }) => {
   const accordionSections = [
     {
       contents: <div>I am contents</div>,
@@ -22,6 +23,15 @@ const Example = ({ activeAlert, closeAlert, closeModal, modalContents, openAlert
 
   return (
     <div>
+      <BannerAlert
+        closeBanner={closeBanner}
+        currentBanner={activeBanner}
+      />
+      { !activeBanner &&
+        <button onClick={openBanner}>
+          reopen banner
+        </button>
+      }
       <Accordion
         sections={accordionSections}
       />

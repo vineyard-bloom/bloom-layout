@@ -4,87 +4,33 @@ ALERTS
 
 @import '~styles/common';
 
-@mixin alert-variant($background, $border, $text-color) {
-  background-color: $background;
-  border-color: $border;
-  color: $text-color;
+$close-button-width: 20px;
 
-  hr {
-    border-top-color: darken($border, 5%);
-  }
-  .Alert-link {
-    color: darken($text-color, 10%);
-  }
-}
-
-//## Define alert colors, border radius, and padding.
-
-$alert-padding: 15px !default;
-$alert-border-radius: $border-radius-base !default;
-$alert-link-font-weight: bold !default;
-
-$alert-success-bg: $state-success-bg !default;
-$alert-success-text: $state-success-text !default;
-$alert-success-border: $state-success-border !default;
-
-$alert-info-bg: $state-info-bg !default;
-$alert-info-text: $state-info-text !default;
-$alert-info-border: $state-info-border !default;
-
-$alert-warning-bg: $state-warning-bg !default;
-$alert-warning-text: $state-warning-text !default;
-$alert-warning-border: $state-warning-border !default;
-
-$alert-danger-bg: $state-danger-bg !default;
-$alert-danger-text: $state-danger-text !default;
-$alert-danger-border: $state-danger-border !default;
-
-.Alert {
-  @include transition(0.4s ease margin 0.2s, 0.15s ease opacity 0.3s);
+.BannerAlert {
+  @include transition(0.3s ease);
   align-items: center;
-  background-color: $white;
   box-shadow: $box-shadow;
-  border-radius: $alert-border-radius;
-  padding: $alert-padding;
-  border: 1px solid transparent;
+  box-sizing: border-box;
   display: flex;
-  height: 100px;
-  justify-content: center;
-  left: calc(50% - 150px);
-  position: relative;
-  top: 80px;
-  width: 300px;
+  margin: 2px; // room for the box-shadow
+  padding: $pad-mar-med $pad-mar-large;
+  width: 100%;
 
   &-background {
-    @include transition(0.1s ease 0.3s);
-    background-color: rgba(0, 0, 0, 0.1);
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 100%;
-    z-index: $z-100;
+    @include transition(0 ease max-height 0);
+    max-height: 100px;
 
     &.is-hidden {
-      height: 1px;
-      top: -155px;
-
-      .Alert {
-        @include transition(0.4s ease margin 0.1s, 0.2s ease opacity 0.2s);
-        opacity: 0;
-      }
+      @include transition(0.2s ease 0.3s);
+      max-height: 0px;
+      overflow: hidden;
     }
   }
 
   &-text {
+    margin-right: -$close-button-width;
     text-align: center;
     width: 100%;
-  }
-
-  &-icon {
-    display: block;
-    font-size: $giant-font-size;
   }
 
   &-close {
@@ -93,22 +39,22 @@ $alert-danger-border: $state-danger-border !default;
     background-repeat: no-repeat;
     background-size: contain;
     display: inline-block;
-    height: 20px;
-    position: absolute;
+    height: $close-button-width;
     right: 10px;
     top: 10px;
-    width: 20px;
+    width: $close-button-width;
   }
 
-  &--success {
-    @include alert-variant($alert-success-bg, $alert-success-border, $alert-success-text);
+  &-fade-entering {
+    opacity: 0.5;
   }
-
-  &--warning {
-    @include alert-variant($alert-warning-bg, $alert-warning-border, $alert-warning-text);
+  &-fade-entered {
+    opacity: 1;
   }
-
-  &--status {
-    @include alert-variant($alert-info-bg, $alert-info-border, $alert-info-text);
+  &-fade-exiting {
+    opacity: 0.5;
+  }
+  &-fade-exited {
+    opacity: 0;
   }
 }

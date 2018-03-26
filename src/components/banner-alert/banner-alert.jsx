@@ -5,36 +5,31 @@ import Transition from 'react-transition-group/Transition'
 import './banner-alert.scss'
 
 const BannerAlert = props => {
-  const { closeAlert, currentAlert } = props
+  const { className, closeBanner, currentBanner } = props
   return (
     <div
-      tabIndex={-1}
       aria-atomic
       aria-relevant='additions removals'
-      className={`Alert-background ${props.hidden ? 'is-hidden' : ''}`}
+      className={`BannerAlert-background ${!currentBanner ? 'is-hidden' : ''}`}
       role='alert'
       aria-live='assertive'
+      aria-hidden={!currentBanner}
     >
-      <Transition in={!!currentAlert} timeout={0}>
+      <Transition in={!!currentBanner} timeout={0}>
         {status => (
           <div
-            className={`Alert Alert--${
-              currentAlert ? currentAlert.style : ''
-            } descend-${status}`}
+            className={`BannerAlert ${className ||
+              ''} BannerAlert-fade-${status}`}
           >
-            {closeAlert && (
-              <a href='#' onClick={closeAlert} className='Alert-close' />
-            )}
-            <div
-              className={`Alert-icon icons-${
-                currentAlert ? currentAlert.style : ''
-              }`}
-              role='presentation'
-            />
-            <div className='u-sr-only'>Alert message: </div>
-            <div className='Alert-text'>
-              {currentAlert ? currentAlert.message : ''}
+            <div className='BannerAlert-text'>
+              {currentBanner ? currentBanner : ''}
             </div>
+            <a
+              href='#'
+              className='BannerAlert-close'
+              onClick={closeBanner}
+              tabIndex={!closeBanner ? -1 : 0}
+            />
           </div>
         )}
       </Transition>
@@ -43,12 +38,9 @@ const BannerAlert = props => {
 }
 
 BannerAlert.propTypes = {
-  closeAlert: PropTypes.func,
-  currentAlert: PropTypes.shape({
-    message: PropTypes.string.isRequired,
-    style: PropTypes.string
-  }),
-  hidden: PropTypes.bool
+  className: PropTypes.string,
+  closeBanner: PropTypes.func.isRequired,
+  currentBanner: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
 }
 
 export default BannerAlert
