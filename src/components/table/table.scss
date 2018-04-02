@@ -102,6 +102,9 @@ $table-border: 1px solid $med-gray;
   }
 
   &-pagination {
+    align-items: center;
+    display: flex;
+    justify-content: center;
     margin-top: -$pad-mar-x-small;
     text-align: center;
 
