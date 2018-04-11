@@ -1,6 +1,8 @@
 # Banner Alerts
 
-A full-width banner notification that must be closed manually.
+A full-width banner notification that must be closed manually. All accessibility (announcing, etc.) is handled for you.
+
+By default, the BannerAlert fills the width of its parent container, plus a small margin. These styles can be tweaked via `.BannerAlert` class.
 
 ### Required Props:
 - `closeBanner`:
