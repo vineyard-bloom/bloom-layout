@@ -9,7 +9,7 @@
     "lint-staged": "./node_modules/.bin/eslint --config .eslintrc --fix --ignore-path .eslintignore",
     "prettify": "node ./scripts/cross-os-prettier.js",
     "prettify-staged": "prettier --config .prettierrc --write",
-    "pre-commit": "npm run build && lint-staged",
+    "pre-commit": "npm run build && lint-staged && git add index.js",
     "test": ""
   },
   "repository": {
