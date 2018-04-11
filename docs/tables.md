@@ -113,9 +113,14 @@ class TableContainer extends Component {
       }
     ]
 
+    const formattedUsers = this.state.users.map(user => {
+      user.formattedDate = formatDate(user.date)
+      return user
+    })
+
     return (
       <Table
-        data={this.state.users}
+        data={formattedUsers}
         headers={headers}
         query={querySetup}
       />
