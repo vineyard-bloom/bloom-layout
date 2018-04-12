@@ -1,6 +1,6 @@
 {
   "name": "bloom-layout",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "layout components used in bloom packages",
   "main": "index.js",
   "scripts": {
