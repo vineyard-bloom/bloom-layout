@@ -104,7 +104,7 @@ const Table = props => {
                 {row[key]}
               </a>
             ) : (
-              <Link to={linkFields[h.sort]}>{row[key]}</Link>
+              <Link to={url}>{row[key]}</Link>
             )
 
           return (

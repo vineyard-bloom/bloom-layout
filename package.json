@@ -1,6 +1,6 @@
 {
   "name": "bloom-layout",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "layout components used in bloom packages",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "lint-staged": "./node_modules/.bin/eslint --config .eslintrc --fix --ignore-path .eslintignore",
     "prettify": "node ./scripts/cross-os-prettier.js",
     "prettify-staged": "prettier --config .prettierrc --write",
-    "pre-commit": "lint-staged",
+    "pre-commit": "npm run build && git add index.js && lint-staged",
     "test": ""
   },
   "repository": {
