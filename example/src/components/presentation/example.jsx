@@ -3,13 +3,24 @@ import {
   Accordion,
   Alert,
   BannerAlert,
-  Loading,
+  // Loading,
   Modal,
-  Table,
-  Tooltip
+  Rating
+  // Table,
+  // Tooltip
 } from 'bloom-layout'
 
-const Example = ({ activeAlert, activeBanner, closeAlert, closeBanner, closeModal, modalContents, openAlert, openBanner, openModal }) => {
+const Example = ({
+  activeAlert,
+  activeBanner,
+  closeAlert,
+  closeBanner,
+  closeModal,
+  modalContents,
+  openAlert,
+  openBanner,
+  openModal
+}) => {
   const accordionSections = [
     {
       contents: <div>I am contents</div>,
@@ -23,28 +34,18 @@ const Example = ({ activeAlert, activeBanner, closeAlert, closeBanner, closeModa
 
   return (
     <div>
-      <BannerAlert
-        closeBanner={closeBanner}
-        currentBanner={activeBanner}
-      />
-      { !activeBanner &&
-        <button onClick={openBanner}>
-          reopen banner
-        </button>
-      }
-      <Accordion
-        sections={accordionSections}
-      />
+      <BannerAlert closeBanner={closeBanner} currentBanner={activeBanner} />
+      {!activeBanner && <button onClick={openBanner}>reopen banner</button>}
+      <Accordion sections={accordionSections} />
       <button onClick={openAlert}>Open Alert</button>
       <button onClick={openModal}>Open Modal</button>
-      <Modal modalContents={modalContents}
-        closeModal={closeModal}
-      />
+      <Modal modalContents={modalContents} closeModal={closeModal} />
       <Alert
         closeAlert={closeAlert}
         currentAlert={activeAlert}
         hidden={!activeAlert}
       />
+      <Rating currentRating={2.5} total={5} />
     </div>
   )
 }
