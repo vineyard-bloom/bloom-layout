@@ -2,6 +2,9 @@
 
 A visual representation of rating x out of y possible, like 3 out of 5 stars. Renders an `.is-full` or `.is-half` class on the shapes that are full or half-full, for easier styling.
 
+Inline-style: 
+![Star Rating Example](https://github.com/vineyard-bloom/bloom-layout/blob/master/docs/star-rating.png)
+
 ## Example Usage:
 ```
 // 4 out of 10 triangles:
