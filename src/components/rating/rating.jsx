@@ -58,12 +58,7 @@ Rating.propTypes = {
   currentRating: function(props, propName, componentName) {
     if (props[propName] < 0 || props[propName] > props.total) {
       return new Error(
-        'Invalid prop `' +
-          propName +
-          '` supplied to' +
-          ' `' +
-          componentName +
-          '`. Should be greater than 0 and less than total.'
+        `Invalid prop '${propName}' supplied to '${componentName}'. Should be greater than 0 and less than total.`
       )
     }
   },
