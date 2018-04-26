@@ -1,0 +1,43 @@
+/*
+RATING
+*/
+
+$gray: #bbb;
+$fillColor: #0af;
+
+.Rating {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100px;
+  justify-content: space-between;
+  max-width: 100%;
+
+  &-shapeWrapper {
+    display: inline-flex;
+    height: 100%;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &-shapeClipper {
+    &.has-half {
+    }
+  }
+
+  &-shape {
+    display: inline-block;
+    fill: $gray;
+    height: 100%;
+    overflow: hidden;
+
+    &.is-full,
+    &.is-half {
+      fill: $fillColor;
+    }
+
+    &.is-half {
+      clip-path: polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%);
+      transform: translateY(-102%);
+    }
+  }
+}

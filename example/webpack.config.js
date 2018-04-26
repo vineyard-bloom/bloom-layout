@@ -38,9 +38,15 @@ const baseConfig = {
           BLOOM_DIR,
           APP_DIR
         ],
+        exclude: [path.resolve(BLOOM_DIR, 'inline-svgs')],
         options: {
           limit: 10000
         }
+      },
+      {
+        test: /\.svg$/,
+        include: [path.resolve(BLOOM_DIR, 'inline-svgs')],
+        loader: 'raw-loader'
       },
       {
         test: /\.jsx?$/,
@@ -96,6 +102,7 @@ const baseConfig = {
     alias: {
       'bloom-layout': BLOOM_DIR,
       components:   path.resolve(__dirname, 'src/components'),
+      'inline-svgs': path.resolve(BLOOM_DIR, 'inline-svgs'),
       styles:       path.resolve(BLOOM_DIR, 'styles')
     },
     extensions: ['.jsx', '.js', '.html', '.scss']

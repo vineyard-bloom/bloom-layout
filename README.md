@@ -11,6 +11,7 @@ Accessibility of data-heavy and data-interruptive (like Alerts and Modals) compo
 - [Alerts](https://github.com/vineyard-bloom/bloom-layout/blob/master/docs/alerts.md)
 - [Banner Alerts](https://github.com/vineyard-bloom/bloom-layout/blob/master/docs/banner-alerts.md)
 - [Modals](https://github.com/vineyard-bloom/bloom-layout/blob/master/docs/modals.md)
+- [Rating](https://github.com/vineyard-bloom/bloom-layout/blob/master/docs/rating.md)
 - [Tables](https://github.com/vineyard-bloom/bloom-layout/blob/master/docs/tables.md)
 - [Tooltips](https://github.com/vineyard-bloom/bloom-layout/blob/master/docs/tooltips.md)
 - [Using Alert and Modal with Redux](https://github.com/vineyard-bloom/bloom-layout/blob/master/docs/alert-and-modal-with-redux.md)

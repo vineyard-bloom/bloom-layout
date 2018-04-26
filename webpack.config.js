@@ -33,9 +33,15 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|eot|ttf|woff|woff2|svg)$/,
         loader: 'url-loader',
+        exclude: [path.resolve(APP_DIR, 'inline-svgs')],
         options: {
           limit: 10000
         }
+      },
+      {
+        test: /\.svg$/,
+        include: [path.resolve(APP_DIR, 'inline-svgs')],
+        loader: 'raw-loader'
       },
       {
         test: /\.s?css$/,
@@ -74,6 +80,7 @@ module.exports = {
 
   resolve: {
     alias: {
+      'inline-svgs': path.resolve(APP_DIR, 'inline-svgs'),
       styles: path.resolve(__dirname, 'src/styles'),
     },
     extensions: ['.webpack.js', '.web.js', '.jsx', '.js', '.html', '.scss']
