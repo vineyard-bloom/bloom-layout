@@ -1,0 +1,24 @@
+/*
+PROGRESS BAR GRAPH
+*/
+
+$height: 20px;
+
+.ProgressBar {
+  background-color: transparent;
+  border: 1px solid black;
+  border-bottom-color: transparent;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px grey;
+  height: $height;
+  margin: 15px 0 0;
+  min-width: 90%;
+
+  &-fill {
+    background: #0af;
+    border-radius: $height 0 0 $height;
+    height: calc(#{$height} + 2px);
+    margin-top: -1px;
+    margin-left: -1px;
+  }
+}

@@ -3,7 +3,7 @@ import {
   Accordion,
   Alert,
   BannerAlert,
-  // Loading,
+  ProgressBar,
   Modal,
   Rating
   // Table,
@@ -46,6 +46,7 @@ const Example = ({
         hidden={!activeAlert}
       />
       <Rating currentRating={2.5} total={5} />
+      <ProgressBar id='progress' current={2} max={5} />
     </div>
   )
 }
